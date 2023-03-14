@@ -123,7 +123,10 @@ public void query_reply(QueryCookie cookie, int client, ConVarQueryResult result
 	if (lilac_forward_allow_cheat_detection(client, CHEAT_CONVAR) == false)
 		return;
 
-	lilac_forward_client_cheat(client, CHEAT_CONVAR);
+	char sLine[512];
+	Format(sLine, sizeof(sLine), "%s %s", cvarName, cvarValue);
+
+	lilac_forward_client_cheat(client, CHEAT_CONVAR, sLine);
 
 	if (icvar[CVAR_LOG]) {
 		lilac_log_setup_client(client);

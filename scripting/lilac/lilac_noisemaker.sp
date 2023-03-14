@@ -143,7 +143,7 @@ static void lilac_detected_noisemaker(int client)
 
 	playerinfo_banned_flags[client][CHEAT_NOISEMAKER_SPAM] = true;
 
-	lilac_forward_client_cheat(client, CHEAT_NOISEMAKER_SPAM);
+	lilac_forward_client_cheat(client, CHEAT_NOISEMAKER_SPAM, "");
 
 	if (icvar[CVAR_LOG]) {
 		lilac_log_setup_client(client);

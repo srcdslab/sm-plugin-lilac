@@ -81,7 +81,11 @@ public void OnClientSayCommand_Post(int client, const char[] command, const char
 			return;
 
 		playerinfo_banned_flags[client][CHEAT_CHATCLEAR] = true;
-		lilac_forward_client_cheat(client, CHEAT_CHATCLEAR);
+
+		char sLine[512];
+		Format(sLine, sizeof(sLine), "Chat message: %s", sArgs);
+
+		lilac_forward_client_cheat(client, CHEAT_CHATCLEAR, sLine);
 
 		if (icvar[CVAR_LOG]) {
 			lilac_log_setup_client(client);
@@ -173,7 +177,11 @@ static void check_name(int client, const char []name)
 			return;
 
 		playerinfo_banned_flags[client][CHEAT_NEWLINE_NAME] = true;
-		lilac_forward_client_cheat(client, CHEAT_NEWLINE_NAME);
+
+		char sLine[512];
+		Format(sLine, sizeof(sLine), "%s", name);
+
+		lilac_forward_client_cheat(client, CHEAT_NEWLINE_NAME, sLine);
 
 		if (icvar[CVAR_LOG]) {
 			lilac_log_setup_client(client);

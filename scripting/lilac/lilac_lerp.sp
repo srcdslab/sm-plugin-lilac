@@ -106,7 +106,10 @@ static void detected_nolerp(int client, float lerp)
 
 	playerinfo_banned_flags[client][CHEAT_NOLERP] = true;
 
-	lilac_forward_client_cheat(client, CHEAT_NOLERP);
+	char sLine[512];
+	Format(sLine, sizeof(sLine), "%fms", lerp * 1000.0);
+
+	lilac_forward_client_cheat(client, CHEAT_NOLERP, sLine);
 
 	if (icvar[CVAR_LOG]) {
 		lilac_log_setup_client(client);

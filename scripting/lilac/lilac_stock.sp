@@ -431,7 +431,7 @@ bool is_player_valid(int client)
 		&& !IsClientSourceTV(client));
 }
 
-void lilac_forward_client_cheat(int client, int cheat)
+void lilac_forward_client_cheat(int client, int cheat, char[] sLine)
 {
 	int dummy;
 
@@ -441,6 +441,7 @@ void lilac_forward_client_cheat(int client, int cheat)
 	Call_StartForward(forwardhandle);
 	Call_PushCell(client);
 	Call_PushCell(cheat);
+	Call_PushString(sLine);
 	Call_Finish(dummy);
 }
 

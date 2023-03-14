@@ -28,6 +28,7 @@
 #include <sdktools_engine>
 #include <sdktools_entoutput>
 #include <convar_class>
+#include <lilac>
 #undef REQUIRE_PLUGIN /* ... */
 #undef REQUIRE_EXTENSIONS
 #if defined TF2C
@@ -137,8 +138,8 @@ public void OnPluginStart()
 	for (int i = 0; i < CHEAT_MAX; i++)
 		ban_length_overwrite[i] = -1;
 
-	/* Bans for Bhop last 1 month by default. */
-	ban_length_overwrite[CHEAT_BHOP] = 24 * 30 * 60;
+	/* Bans for Bhop last 3 days by default. */
+	ban_length_overwrite[CHEAT_BHOP] = 24 * 3;
 
 	/* Bans for Macros are 15 minutes by default. */
 	ban_length_overwrite[CHEAT_MACRO] = 15;
@@ -156,7 +157,7 @@ public void OnPluginStart()
 	}
 
 	forwardhandle = CreateGlobalForward("lilac_cheater_detected",
-		ET_Ignore, Param_Cell, Param_Cell);
+		ET_Ignore, Param_Cell, Param_Cell, Param_String);
 	forwardhandleban = CreateGlobalForward("lilac_cheater_banned",
 		ET_Ignore, Param_Cell, Param_Cell);
 	forwardhandleallow = CreateGlobalForward("lilac_allow_cheat_detection",
@@ -208,6 +209,8 @@ public void OnAllPluginsLoaded()
 
 public APLRes AskPluginLoad2(Handle hMyself, bool bLate, char[] sError, int err_max)
 {
+	RegPluginLibrary("lilac");
+
 	/* Been told this isn't needed, but just in case. */
 	MarkNativeAsOptional("SBBanPlayer");
 	MarkNativeAsOptional("SBPP_BanPlayer");

@@ -323,7 +323,17 @@ static void lilac_detected_aimbot(int client, float delta, float td, int flags)
 	/* Detection expires in 10 minutes. */
 	CreateTimer(600.0, timer_decrement_aimbot, GetClientUserId(client), TIMER_FLAG_NO_MAPCHANGE);
 
-	lilac_forward_client_cheat(client, CHEAT_AIMBOT);
+	char sLine[512];
+	Format(sLine, sizeof(sLine),
+			"Detection: %d | Delta: %.0f | TotalDelta: %.0f | Detected:%s%s%s%s%s",
+			aimbot_detection[client], delta, td,
+			((flags & AIMBOT_FLAG_SNAP)      ? " Aim-Snap"     : ""),
+			((flags & AIMBOT_FLAG_SNAP2)     ? " Aim-Snap2"    : ""),
+			((flags & AIMBOT_FLAG_AUTOSHOOT) ? " Autoshoot"    : ""),
+			((flags & AIMBOT_FLAG_REPEAT)    ? " Angle-Repeat" : ""),
+			((td > AIMBOT_MAX_TOTAL_DELTA)   ? " Total-Delta"  : ""));
+
+	lilac_forward_client_cheat(client, CHEAT_AIMBOT, sLine);
 
 	/* Don't log the first detection. */
 	if (++aimbot_detection[client] < 2)
