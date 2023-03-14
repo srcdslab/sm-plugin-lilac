@@ -119,14 +119,14 @@ static void lilac_detected_macro(int client, int type)
 	default: { return; } /* Invalid type. */
 	}
 
+	/* Ignore the first detection. */
+	if (++macro_detected[client][type] < 2)
+		return;
+
 	char sLine[512];
 	Format(sLine, sizeof(sLine), "Macro %s (Detection: %d | Max presses: %d)", string, macro_detected[client][type], macro_max);
 
 	lilac_forward_client_cheat(client, CHEAT_MACRO, sLine);
-
-	/* Ignore the first detection. */
-	if (++macro_detected[client][type] < 2)
-		return;
 
 	/* Log (2 == detect, but no logging). */
 	if (icvar[CVAR_LOG] && icvar[CVAR_MACRO] < 2) {

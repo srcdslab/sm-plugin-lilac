@@ -323,6 +323,10 @@ static void lilac_detected_aimbot(int client, float delta, float td, int flags)
 	/* Detection expires in 10 minutes. */
 	CreateTimer(600.0, timer_decrement_aimbot, GetClientUserId(client), TIMER_FLAG_NO_MAPCHANGE);
 
+	/* Don't log the first detection. */
+	if (++aimbot_detection[client] < 2)
+		return;
+
 	char sLine[512];
 	Format(sLine, sizeof(sLine),
 			"Detection: %d | Delta: %.0f | TotalDelta: %.0f | Detected:%s%s%s%s%s",
@@ -334,10 +338,6 @@ static void lilac_detected_aimbot(int client, float delta, float td, int flags)
 			((td > AIMBOT_MAX_TOTAL_DELTA)   ? " Total-Delta"  : ""));
 
 	lilac_forward_client_cheat(client, CHEAT_AIMBOT, sLine);
-
-	/* Don't log the first detection. */
-	if (++aimbot_detection[client] < 2)
-		return;
 
 	if (icvar[CVAR_CHEAT_WARN])
 		lilac_warn_admins(client, CHEAT_AIMBOT, aimbot_detection[client]);
