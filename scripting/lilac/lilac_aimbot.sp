@@ -34,6 +34,7 @@ int lilac_aimbot_get_client_detections(int client)
 
 public Action event_player_death(Event event, const char[] name, bool dontBroadcast)
 {
+	char wep[64];
 	int attackerid;
 	int victimid;
 	int client;
@@ -52,6 +53,11 @@ public Action event_player_death(Event event, const char[] name, bool dontBroadc
 	 * This can happen with explosives, like some projectiles.
 	 * This variable gets set in the "shared event" function. */
 	if (aimbot_timertick[client] == GetGameTickCount())
+		return Plugin_Continue;
+
+	/* Ignore kills performed with grenades. */
+	GetEventString(event, "weapon", sWeaponName, sizeof(sWeaponName));
+	if (strcmp(sWeaponName, "hegrenade") == 0)
 		return Plugin_Continue;
 	
 	event_death_shared(attackerid,
