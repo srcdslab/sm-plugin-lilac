@@ -56,8 +56,8 @@ public Action event_player_death(Event event, const char[] name, bool dontBroadc
 		return Plugin_Continue;
 
 	/* Ignore kills performed with grenades. */
-	GetEventString(event, "weapon", sWeaponName, sizeof(sWeaponName));
-	if (strcmp(sWeaponName, "hegrenade") == 0)
+	GetEventString(event, "weapon", wep, sizeof(wep));
+	if (strcmp(wep, "hegrenade") == 0)
 		return Plugin_Continue;
 	
 	event_death_shared(attackerid,
