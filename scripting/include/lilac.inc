@@ -34,7 +34,7 @@
 #define CHEAT_BHOP               4
 #define CHEAT_AIMBOT             5
 #define CHEAT_AIMLOCK            6
-#define CHEAT_ANTI_DUCK_DELAY    7
+// #define CHEAT_ANTI_DUCK_DELAY    7 /* Deprecated - Unsupported game */
 #define CHEAT_NOISEMAKER_SPAM    8
 #define CHEAT_MACRO              9 /* Macros aren't actually cheats, but are forwarded as such. */
 #define CHEAT_NEWLINE_NAME      10
@@ -90,7 +90,6 @@ stock void GetCheatName(int type, char[] buffer, int maxlen)
 		case CHEAT_BHOP:Format(buffer, maxlen, "Bhop");
 		case CHEAT_AIMBOT:Format(buffer, maxlen, "Aimbot");
 		case CHEAT_AIMLOCK:Format(buffer, maxlen, "Aimlock");
-		case CHEAT_ANTI_DUCK_DELAY:Format(buffer, maxlen, "Anti Duck delay");
 		case CHEAT_NOISEMAKER_SPAM:Format(buffer, maxlen, "NoiseMaker spam");
 		case CHEAT_MACRO:Format(buffer, maxlen, "Macro");
 		case CHEAT_NEWLINE_NAME:Format(buffer, maxlen, "NewLine Name");

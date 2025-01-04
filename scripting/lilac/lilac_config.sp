@@ -89,9 +89,6 @@ void lilac_config_setup()
 	hcvar[CVAR_AIMLOCK_LIGHT] = new Convar("lilac_aimlock_light", "1",
 		"Only process at most 5 suspicious players for aimlock.\nDO NOT DISABLE THIS UNLESS YOUR SERVER CAN HANDLE IT!",
 		FCVAR_PROTECTED, true, 0.0, true, 1.0);
-	hcvar[CVAR_ANTI_DUCK_DELAY] = new Convar("lilac_anti_duck_delay", "1",
-		"CS:GO Only, detect Anti-Duck-Delay/FastDuck.\n-1 = Log only.\n0 = Disabled.\n1 = Enabled.",
-		FCVAR_PROTECTED, true, -1.0, true, 1.0);
 	hcvar[CVAR_NOISEMAKER_SPAM] = new Convar("lilac_noisemaker", "1",
 		"TF2 Only, detect infinite noisemaker spam. STILL IN BETA, DOES NOT BAN, ONLY LOGS! MAY HAVE SOME ISSUES!\n-1 = Log only.\n0 = Disabled.\n1 = Enabled.",
 		FCVAR_PROTECTED, true, -1.0, true, 1.0);
@@ -407,7 +404,6 @@ public Action lilac_set_ban_length(int args)
 		PrintToServer("\tlilac_set_ban_length bhop <minutes>");
 		PrintToServer("\tlilac_set_ban_length aimbot <minutes>");
 		PrintToServer("\tlilac_set_ban_length aimlock <minutes>");
-		PrintToServer("\tlilac_set_ban_length antiduckdelay <minutes>");
 		PrintToServer("\tlilac_set_ban_length noisemaker <minutes>");
 		PrintToServer("\tlilac_set_ban_length macro <minutes>");
 		PrintToServer("\tlilac_set_ban_length name <minutes>\n");
@@ -437,12 +433,6 @@ public Action lilac_set_ban_length(int args)
 	}
 	else if (StrEqual(feature, "aimlock", false) || StrEqual(feature, "lock", false)) {
 		index = CHEAT_AIMLOCK;
-	}
-	/* ( @~@) Bruh.... This is... B R U H */
-	else if (StrEqual(feature, "duck", false) || StrEqual(feature, "crouch", false)
-		|| StrEqual(feature, "antiduck", false) || StrEqual(feature, "antiduckdelay", false)
-		|| StrEqual(feature, "fastduck", false)) {
-		index = CHEAT_ANTI_DUCK_DELAY;
 	}
 	else if (StrEqual(feature, "noisemaker", false) || StrEqual(feature, "noise", false)) {
 		index = CHEAT_NOISEMAKER_SPAM;
@@ -597,9 +587,6 @@ public void cvar_change(ConVar convar, const char[] oldValue, const char[] newVa
 	}
 	else if (convar == hcvar[CVAR_AIMLOCK_LIGHT]) {
 		icvar[CVAR_AIMLOCK_LIGHT] = StringToInt(newValue, 10);
-	}
-	else if (convar == hcvar[CVAR_ANTI_DUCK_DELAY]) {
-		icvar[CVAR_ANTI_DUCK_DELAY] = StringToInt(newValue, 10);
 	}
 	else if (convar == hcvar[CVAR_NOISEMAKER_SPAM]) {
 		icvar[CVAR_NOISEMAKER_SPAM] = StringToInt(newValue, 10);

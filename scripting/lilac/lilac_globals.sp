@@ -24,7 +24,7 @@
 #define GAME_UNKNOWN   0
 #define GAME_TF2       1
 #define GAME_CSS       2
-#define GAME_CSGO      3
+// #define GAME_CSGO      3 /* Deprecated - Unsupported game */
 #define GAME_DODS      4
 #define GAME_L4D2      5
 #define GAME_L4D       6
@@ -51,7 +51,7 @@
 #define CVAR_AIMBOT_AUTOSHOOT      19
 #define CVAR_AIMLOCK               20
 #define CVAR_AIMLOCK_LIGHT         21
-#define CVAR_ANTI_DUCK_DELAY       22
+// #define CVAR_ANTI_DUCK_DELAY       22 /* Deprecated - Unsupported game */
 #define CVAR_NOISEMAKER_SPAM       23
 #define CVAR_BACKTRACK_PATCH       24
 #define CVAR_BACKTRACK_TOLERANCE   25
@@ -120,7 +120,7 @@
 #define PLUGIN_NAME      "[Lilac] Little Anti-Cheat"
 #define PLUGIN_AUTHOR    "J_Tanzanite"
 #define PLUGIN_DESC      "An opensource Anti-Cheat"
-#define PLUGIN_VERSION   "1.7.6"
+#define PLUGIN_VERSION   "1.7.7"
 #define PLUGIN_URL       "https://github.com/J-Tanzanite/Little-Anti-Cheat"
 
 /* Convars. */

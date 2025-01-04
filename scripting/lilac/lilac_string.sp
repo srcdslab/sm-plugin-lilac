@@ -64,10 +64,6 @@ public Action OnClientSayCommand(int client, const char[] command, const char[] 
 
 public void OnClientSayCommand_Post(int client, const char[] command, const char[] sArgs)
 {
-	/* Chat-Clear doesn't work in CS:GO. */
-	if (ggame == GAME_CSGO)
-		return;
-
 	/* Todo: CVAR_CHAT is... Now an outdated name... */
 	if (!icvar[CVAR_ENABLE] || !icvar[CVAR_CHAT])
 		return;

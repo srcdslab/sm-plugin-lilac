@@ -234,7 +234,6 @@ void lilac_ban_client(int client, int cheat)
 	case CHEAT_NOLERP: { log_only = icvar[CVAR_NOLERP] < 0; }
 	case CHEAT_BHOP: { log_only = icvar[CVAR_BHOP] < 0; }
 	/* Aimbot and Aimlock have their own dedicated log-only mode. */
-	case CHEAT_ANTI_DUCK_DELAY: { log_only = icvar[CVAR_ANTI_DUCK_DELAY] < 0; }
 	case CHEAT_NOISEMAKER_SPAM: { log_only = icvar[CVAR_NOISEMAKER_SPAM] < 0; }
 	case CHEAT_MACRO: { log_only = icvar[CVAR_MACRO] < 0; }
 	case CHEAT_NEWLINE_NAME: { log_only = icvar[CVAR_FILTER_NAME] < 0; }
@@ -261,8 +260,6 @@ void lilac_ban_client(int client, int cheat)
 		"[Little Anti-Cheat %s] %T", PLUGIN_VERSION, "ban_aimbot", lang); }
 	case CHEAT_AIMLOCK: { Format(reason, sizeof(reason),
 		"[Little Anti-Cheat %s] %T", PLUGIN_VERSION, "ban_aimlock", lang); }
-	case CHEAT_ANTI_DUCK_DELAY: { Format(reason, sizeof(reason),
-		"[Little Anti-Cheat %s] %T", PLUGIN_VERSION, "ban_anti_duck_delay", lang); }
 	case CHEAT_NOISEMAKER_SPAM: { Format(reason, sizeof(reason),
 		"[Little Anti-Cheat %s] %T", PLUGIN_VERSION, "ban_noisemaker", lang); }
 	case CHEAT_MACRO: { Format(reason, sizeof(reason),
