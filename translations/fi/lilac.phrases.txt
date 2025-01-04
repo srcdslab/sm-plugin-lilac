@@ -63,11 +63,6 @@
 		"fi"		"Aimlock havaittu"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"fi" 		"Anti-Duck-Delay havaittu"
-	}
-
 	"ban_noisemaker"
 	{
 		"fi" 		"Infinite Noise Maker havaittu"

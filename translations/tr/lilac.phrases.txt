@@ -63,11 +63,6 @@
 		"tr"		"Aimlock Algılandı"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"tr" 		"FastDuck Algılandı"
-	}
-
 	"ban_noisemaker"
 	{
 		"tr" 		"Sonsuz Gürültücü Tespit Edildi"

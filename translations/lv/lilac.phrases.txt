@@ -63,11 +63,6 @@
 		"lv"		"Aimlock Atklāts"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"lv" 		"Anti-Duck-Delay Atklāts"
-	}
-
 	"ban_noisemaker"
 	{
 		"lv" 		"Infinite Noise Maker Atklāts"

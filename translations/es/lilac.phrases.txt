@@ -63,11 +63,6 @@
 		"es"		"Detectado Aimlock"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"es" 		"Detectado Anti-Duck-Delay"
-	}
-
 	"ban_noisemaker"
 	{
 		"es" 		"Detectado Noisemaker infinito"

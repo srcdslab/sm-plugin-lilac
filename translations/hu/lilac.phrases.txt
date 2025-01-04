@@ -58,11 +58,6 @@
 		"hu"		"Aimlock Detektálva."
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"hu" 		"Anti-Duck-Delay Detektálva."
-	}
-
 	"ban_noisemaker"
 	{
 		"hu" 		"Infinite Noisemaker Detektálva."

@@ -60,11 +60,6 @@
 		"se"		"Aimlock Upptäckt"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"se" 		"Anti-Duck-Fördröjning Upptäckt"
-	}
-
 	"ban_noisemaker"
 	{
 		"se" 		"Oändlig Noisemaker Upptäckt"

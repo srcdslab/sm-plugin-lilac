@@ -59,11 +59,6 @@
 	{
 		"pt"		"Auxílio de mira (aimlock) detectado"
 	}
-	
-	"ban_anti_duck_delay"
-	{
-		"pt" 		"Remoção do atraso para agachar detectado"
-	}
 
 	"ban_noisemaker"
 	{

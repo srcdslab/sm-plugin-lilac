@@ -63,11 +63,6 @@
 		"ro"		"Aimlock Detectat"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"ro" 		"Anti-Duck-Delay Detectat"
-	}
-
 	"ban_noisemaker"
 	{
 		"ro" 		"Infinite Noise Maker Detectat"

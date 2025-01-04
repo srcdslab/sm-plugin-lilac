@@ -55,11 +55,6 @@
 		"pl"		"Wykryto Aimlock"
 	}
 
-	"ban_anti_duck_delay"
-	{
-		"pl"		"Wykryto Anti-Duck-Delay"
-	}
-
 	"ban_noisemaker"
 	{
 		"pl"		"Wykryto Nieskończony Zagłuszacz"
