@@ -12,7 +12,6 @@ This Anti-Cheat is by no means perfect, and it is bypassable to some extent, but
  - BunnyHop (Bhop).
  - Basic Projectile and Hitscan Aimbot.
  - Basic Aimlock.
- - Anti-Duck-Delay/FastDuck (CS:GO only).
  - Newlines in names.
 
 ### Misc features:
@@ -26,7 +25,6 @@ This Anti-Cheat is by no means perfect, and it is bypassable to some extent, but
 
 ### Supported Games:
  - [TF2] Team Fortress 2
- - [CS:GO] Counter-Strike:Global Offensive
  - [CS:S] Counter-Strike:Source
  - [L4D2] Left 4 Dead 2
  - [L4D] Left 4 Dead
@@ -47,15 +45,6 @@ That said, if someone has to go out of their way to do something stupid and abno
 If this is a problem for you, you can set `lilac_aimbot_autoshoot` to `0`.
 
 Important thing to note about Autoshoot, because this feature shoots for you, you cannot tell if someone is using Autoshoot by spectating them, or through STV demos. Autoshoot isn't visible in demos or for spectators.
-
-**Q: What is Anti-Duck-Delay? There are so many bans for it, are they false positives?**\
-A: Are they false positives? In short: **No.**\
-Anti-Duck-Delay (Most commonly called **FastDuck**) is a cheat feature in CS:GO that is available in a LOT of cheats.\
-In fact, Anti-Duck-Delay is so commonly used by cheaters, that most bans issued by Lilac in CS:GO will be for this.\
-Anti-Duck-Delay works by inputting a value into your usercmd buttons, that is impossible to input by legit players; only internal cheats can do this.
-
-I understand if this makes you anxious, since there are a LOT of bans for ADD, but this is completely normal.\
-If someone gets banned for this, they were cheating.
 
 **Q: What is NoLerp?**\
 A: "NoLerp" is when cheats set their interpolation to 0ms (or lower than the minimum possible).\
@@ -100,10 +89,10 @@ These **HAVE** to be disabled.
  - Bottiger, for fixing this plugin not working in CS:GO and general criticisms.
  - MAGNAT2645 for suggesting a cleaner method of handling convar changes.
  - Larry/LarryBrains for informing me of false Angle-Cheat detections in L4D2.
- - VintagePC (https://github.com/vintagepc) for SourceIRC support and basepath fix.
+ - [VintagePC](https://github.com/vintagepc) for SourceIRC support and basepath fix.
 
 ### Current languages supported:
- - Simplified Chinese (by RoyZ https://github.com/RoyZ-CSGO ^-^, and apples194)
+ - Simplified Chinese (by [RoyZ](https://github.com/RoyZ-CSGO) ^-^, and apples194)
  - Dutch (by snowy UwU OwO EwE).
  - Danish (by kS the Man / ksgoescoding c:).
  - Norwegian (by me, the translations could be better).
@@ -112,11 +101,11 @@ These **HAVE** to be disabled.
  - English (by me lol duh hue hue hue).
  - Russian (by an awesome person c:).
  - Czech (by luk27official and someone else).
- - Brazilian Portuguese by SheepyChris (https://github.com/SheepyChris), Tiagoquix (https://github.com/Tiagoquix) and Crashzk (https://github.com/crashzk).
+ - Brazilian Portuguese by [SheepyChris](https://github.com/SheepyChris), [Tiagoquix](https://github.com/Tiagoquix) and [Crashzk](https://github.com/crashzk).
  - German (by two humble nice Germans c:).
  - Spanish (by ALEJANDRO ^-^).
  - Ukrainian (by panikajo ;D).
- - Polish (by https://github.com/qawery-just-sad).
+ - Polish by [qawery](https://github.com/qawery-just-sad).
  - Turkish (by ShiroNje and R3nzTheCodeGOD).
  - Hungarian (by The Solid Lad).
  - Swedish (by Teamkiller324).
