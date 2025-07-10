@@ -1,3 +1,10 @@
+1.7.10
+- lilac_set_ban_length command now return a confirmation message
+- lilac_get_bans_length - Shows current ban lengths for all cheat types.
+
+1.7.9
+- Rebuild cvars logic (and added more cvars)
+
 1.7.8
 - Reorder and renumber CVAR definitions (was leading to 1.7.7 not correctly loading)
 - Remove deprecated ANTI_DUCK_DELAY comment

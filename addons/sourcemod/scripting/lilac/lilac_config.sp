@@ -180,6 +180,7 @@ void lilac_config_setup()
 
 	RegServerCmd("lilac_date_list", lilac_date_list, "Lists date formatting options", 0);
 	RegServerCmd("lilac_set_ban_length", lilac_set_ban_length, "Sets custom ban lengths for specific cheats.", 0);
+	RegServerCmd("lilac_get_bans_length", lilac_get_bans_length, "Shows current ban lengths for all cheat types.", 0);
 	RegServerCmd("lilac_ban_status", lilac_ban_status, "Prints banning status to server console.", 0);
 	RegServerCmd("lilac_bhop_set", lilac_bhop_set, "Sets Custom Bhop settings", 0);
 
@@ -463,7 +464,87 @@ public Action lilac_set_ban_length(int args)
 
 	ban_length_overwrite[index] = time;
 
-	/* Todo: Add message showing new times? Like the bhop set command :) */
+	/* Show confirmation message with new ban length */
+	char cheat_name[32];
+	switch (index) {
+		case CHEAT_ANGLES: strcopy(cheat_name, sizeof(cheat_name), "Angles");
+		case CHEAT_CHATCLEAR: strcopy(cheat_name, sizeof(cheat_name), "Chat Clear");
+		case CHEAT_CONVAR: strcopy(cheat_name, sizeof(cheat_name), "ConVar");
+		case CHEAT_NOLERP: strcopy(cheat_name, sizeof(cheat_name), "NoLerp");
+		case CHEAT_BHOP: strcopy(cheat_name, sizeof(cheat_name), "Bhop");
+		case CHEAT_AIMBOT: strcopy(cheat_name, sizeof(cheat_name), "Aimbot");
+		case CHEAT_AIMLOCK: strcopy(cheat_name, sizeof(cheat_name), "Aimlock");
+		case CHEAT_NOISEMAKER_SPAM: strcopy(cheat_name, sizeof(cheat_name), "Noisemaker Spam");
+		case CHEAT_MACRO: strcopy(cheat_name, sizeof(cheat_name), "Macro");
+		case CHEAT_NEWLINE_NAME: strcopy(cheat_name, sizeof(cheat_name), "Newline Name");
+		default: strcopy(cheat_name, sizeof(cheat_name), "Unknown");
+	}
+	
+	if (time == -1) {
+		PrintToServer("[Lilac] Changed %s ban length to use global ConVar 'lilac_ban_length' (%d minutes).", 
+			cheat_name, icvar[CVAR_BAN_LENGTH]);
+	} else if (time == 0) {
+		PrintToServer("[Lilac] Changed %s ban length to permanent ban.", cheat_name);
+	} else {
+		PrintToServer("[Lilac] Changed %s ban length to %d minutes.", cheat_name, time);
+	}
+
+	return Plugin_Handled;
+}
+
+public Action lilac_get_bans_length(int args)
+{
+	PrintToServer("====[Little Anti-Cheat %s - Ban Length Status]====", PLUGIN_VERSION);
+	PrintToServer("Current ban lengths for each cheat type:");
+	PrintToServer("(Values in minutes, -1 = Use global ConVar 'lilac_ban_length')");
+	PrintToServer("");
+
+	PrintToServer("Cheat Type          : Custom Length : Effective Length");
+	PrintToServer("------------------------------------------------");
+
+	// Angles
+	int effective_length = (ban_length_overwrite[CHEAT_ANGLES] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_ANGLES];
+	PrintToServer("Angles              : %-13d : %d", ban_length_overwrite[CHEAT_ANGLES], effective_length);
+
+	// Chat Clear
+	effective_length = (ban_length_overwrite[CHEAT_CHATCLEAR] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_CHATCLEAR];
+	PrintToServer("Chat Clear          : %-13d : %d", ban_length_overwrite[CHEAT_CHATCLEAR], effective_length);
+
+	// ConVar
+	effective_length = (ban_length_overwrite[CHEAT_CONVAR] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_CONVAR];
+	PrintToServer("ConVar              : %-13d : %d", ban_length_overwrite[CHEAT_CONVAR], effective_length);
+
+	// NoLerp
+	effective_length = (ban_length_overwrite[CHEAT_NOLERP] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_NOLERP];
+	PrintToServer("NoLerp              : %-13d : %d", ban_length_overwrite[CHEAT_NOLERP], effective_length);
+
+	// Bhop
+	effective_length = (ban_length_overwrite[CHEAT_BHOP] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_BHOP];
+	PrintToServer("Bhop                : %-13d : %d", ban_length_overwrite[CHEAT_BHOP], effective_length);
+
+	// Aimbot
+	effective_length = (ban_length_overwrite[CHEAT_AIMBOT] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_AIMBOT];
+	PrintToServer("Aimbot              : %-13d : %d", ban_length_overwrite[CHEAT_AIMBOT], effective_length);
+
+	// Aimlock
+	effective_length = (ban_length_overwrite[CHEAT_AIMLOCK] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_AIMLOCK];
+	PrintToServer("Aimlock             : %-13d : %d", ban_length_overwrite[CHEAT_AIMLOCK], effective_length);
+
+	// Noisemaker Spam
+	effective_length = (ban_length_overwrite[CHEAT_NOISEMAKER_SPAM] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_NOISEMAKER_SPAM];
+	PrintToServer("Noisemaker Spam     : %-13d : %d", ban_length_overwrite[CHEAT_NOISEMAKER_SPAM], effective_length);
+
+	// Macro
+	effective_length = (ban_length_overwrite[CHEAT_MACRO] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_MACRO];
+	PrintToServer("Macro               : %-13d : %d", ban_length_overwrite[CHEAT_MACRO], effective_length);
+
+	// Newline Name
+	effective_length = (ban_length_overwrite[CHEAT_NEWLINE_NAME] <= -1) ? icvar[CVAR_BAN_LENGTH] : ban_length_overwrite[CHEAT_NEWLINE_NAME];
+	PrintToServer("Newline Name        : %-13d : %d", ban_length_overwrite[CHEAT_NEWLINE_NAME], effective_length);
+
+	PrintToServer("");
+	PrintToServer("Global ConVar 'lilac_ban_length' = %d minutes", icvar[CVAR_BAN_LENGTH]);
+	PrintToServer("(0 = permanent ban)");
 
 	return Plugin_Handled;
 }
