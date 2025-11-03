@@ -1,1 +1,107 @@
+"Phrases"
+{
+	"welcome_msg"
+	{
+		"#format"	"{1:s}"
+		"zho"		"本伺服器由 LAC 反作弊系統保護 {1}"
+	}
 
+	"kick_query_failure"
+	{
+		"zho"		"錯誤：查詢無回應，如果問題持續，請重新啟動遊戲"
+	}
+
+	"kick_interp_exploit"
+	{
+		"#format"	"{1:.0f},{2:d},{3:.3f}"
+		"zho"		"偵測到參數異常：你的 interp 值過高 ({1}ms / 最高 {2}ms)。請將 cl_interp 參數設為 {3} 或更低。"
+	}
+
+	"tban_ping_high"
+	{
+		"#format"	"{1:.0f},{2:d}"
+		"zho"		"你的延遲過高！ ({1} / 最高 {2})"
+	}
+
+	"kick_ban_genetic"
+	{
+		"zho"		"你已被此伺服器封鎖。"
+	}
+
+	"ban_angle"
+	{
+		"zho"		"偵測到異常角度"
+	}
+
+	"ban_chat_clear"
+	{
+		"zho"		"偵測到清除聊天外掛"
+	}
+
+	"ban_convar"
+	{
+		"zho"		"偵測到非法變數"
+	}
+
+	"ban_nolerp"
+	{
+		"zho"		"偵測到非法 Lerp 值"
+	}
+
+	"ban_bhop"
+	{
+		"zho"		"偵測到連跳腳本"
+	}
+
+	"ban_aimbot"
+	{
+		"zho"		"偵測到自動瞄準外掛"
+	}
+
+	"ban_aimlock"
+	{
+		"zho"		"偵測到鎖頭外掛"
+	}
+
+	"ban_noisemaker"
+	{
+		"zho"		"偵測到洗畫面行為"
+	}
+
+	"ban_macro"
+	{
+		"zho"		"偵測到輔助巨集"
+	}
+
+	"kick_macro"
+	{
+		"#format"	"{1:s}"
+		"zho"		"本伺服器不允許使用 {1} 輔助巨集"
+	}
+
+	"chat_invalid_characters"
+	{
+		"zho" 		"您的聊天訊息已被封鎖 (原因：含無效字元)"
+	}
+
+	"chat_wide_char_spam"
+	{
+		"zho"		"您的聊天訊息已被封鎖 (原因：異常字元洗頻)"
+	}
+
+	"kick_bad_name"
+	{
+		"zho"		"您的遊戲名稱含有非法字元，請更改名稱後再試"
+	}
+
+	"ban_name_newline"
+	{
+		"zho"		"偵測到名稱中含有換行符號"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"#format"	"{1:s},{2:s},{3:d}"
+		"zho"		"{1} 可能使用了「{2}」(偵測次數：{3})"
+	}
+}
