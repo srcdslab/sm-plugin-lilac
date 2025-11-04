@@ -14,18 +14,18 @@
 	"kick_interp_exploit"
 	{
 		"#format"	"{1:.0f},{2:d},{3:.3f}"
-		"zho"		"偵測到參數異常：你的 interp 值過高 ({1}ms / 最高 {2}ms)。請將 cl_interp 參數設為 {3} 或更低。"
+		"zho"		"偵測到參數異常：您的 interp 值過高 ({1}ms / 最高 {2}ms)。請將 cl_interp 參數設為 {3} 或更低。"
 	}
 
 	"tban_ping_high"
 	{
 		"#format"	"{1:.0f},{2:d}"
-		"zho"		"你的延遲過高！ ({1} / 最高 {2})"
+		"zho"		"您的延遲過高！ ({1} / 最高 {2})"
 	}
 
 	"kick_ban_genetic"
 	{
-		"zho"		"你已被此伺服器封鎖。"
+		"zho"		"您已被此伺服器封鎖。"
 	}
 
 	"ban_angle"
@@ -86,7 +86,7 @@
 
 	"chat_wide_char_spam"
 	{
-		"zho"		"您的聊天訊息已被封鎖 (原因：異常字元洗頻)"
+		"zho"		"您的聊天訊息已被封鎖 (原因：異常字元洗畫面)"
 	}
 
 	"kick_bad_name"
