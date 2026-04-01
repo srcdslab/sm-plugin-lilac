@@ -22,56 +22,56 @@ static int query_failed[MAXPLAYERS + 1];
 
 /* Structure to store convar validation rules */
 enum struct ConvarRule {
-    char name[32];
-    any  expected_value;
-    bool is_minimum;
-    bool is_float;
+	char name[32];
+	any expected_value;
+	bool is_minimum;
+	bool is_float;
 }
 
 static ConvarRule convar_rules[] = {
-    {"cl_clock_correction",      1.0,  true,  true},
-    {"cl_cmdrate",               10,   true,  false},
-    {"cl_leveloverview",         0.0,  false, true},
-    {"cl_overdraw_test",         0.0,  false, true},
-    {"cl_phys_timescale",        1.0,  false, true},
-    {"cl_pitchdown",             89,   false, false},
-    {"cl_pitchup",               89,   false, false},
-    {"cl_showevents",            0.0,  false, true},
-    {"host_timescale",           1.0,  false, true},
-    {"mem_force_flush",          0.0,  false, true},
-    {"mat_fillrate",             0.0,  false, true},
-    {"mat_proxy",                0.0,  false, true},
-    {"mat_wireframe",            0.0,  false, true},
-    {"net_blockmsg",             0,    false, false},
-    {"net_droppackets",          0,    false, false},
-    {"net_fakejitter",           0,    false, false},
-    {"net_fakelag",              0,    false, false},
-    {"net_fakeloss",             0,    false, false},
-    {"r_aspectratio",            0.0,  false, true},
-    {"r_ClipAreaPortals",        1,    false, false},
-    {"r_colorstaticprops",       0.0,  false, true},
-    {"r_DispWalkable",           0.0,  false, true},
-    {"r_DrawBeams",              1.0,  false, true},
-    {"r_drawbrushmodels",        1.0,  false, true},
-    {"r_drawclipbrushes",        0.0,  false, true},
-    {"r_drawdecals",             1.0,  false, true},
-    {"r_drawentities",           1.0,  false, true},
-    {"r_drawmodelstatsoverlay",  0,    false, false},
-    {"r_drawopaqueworld",        1.0,  false, true},
-    {"r_drawothermodels",        1.0,  false, true},
-    {"r_drawparticles",          1.0,  false, true},
-    {"r_drawrenderboxes",        0.0,  false, true},
-    {"r_drawtranslucentworld",   1.0,  false, true},
-    {"r_modelwireframedecal",    0,    false, false},
-    {"r_portalsopenall",         0,    false, false},
-    {"r_shadowwireframe",        0.0,  false, true},
-    {"r_showenvcubemap",         0,    false, false},
-    {"r_skybox",                 1.0,  false, true},
-    {"r_visocclusion",           0.0,  false, true},
-    {"snd_show",                 0.0,  false, true},
-    {"snd_visualize",            0.0,  false, true},
-    {"sv_cheats",                0.0,  false, true},
-    {"vcollide_wireframe",       0.0,  false, true}
+	{"cl_clock_correction", 1.0, true, true},
+	{"cl_cmdrate", 10, true, false},
+	{"cl_leveloverview", 0.0, false, true},
+	{"cl_overdraw_test", 0.0, false, true},
+	{"cl_phys_timescale", 1.0, false, true},
+	{"cl_pitchdown", 89, false, false},
+	{"cl_pitchup", 89, false, false},
+	{"cl_showevents", 0.0, false, true},
+	{"host_timescale", 1.0, false, true},
+	{"mem_force_flush", 0.0, false, true},
+	{"mat_fillrate", 0.0, false, true},
+	{"mat_proxy", 0.0, false, true},
+	{"mat_wireframe", 0.0, false, true},
+	{"net_blockmsg", 0, false, false},
+	{"net_droppackets", 0, false, false},
+	{"net_fakejitter", 0, false, false},
+	{"net_fakelag", 0, false, false},
+	{"net_fakeloss", 0, false, false},
+	{"r_aspectratio", 0.0, false, true},
+	{"r_ClipAreaPortals", 1, false, false},
+	{"r_colorstaticprops", 0.0, false, true},
+	{"r_DispWalkable", 0.0, false, true},
+	{"r_DrawBeams", 1.0, false, true},
+	{"r_drawbrushmodels", 1.0, false, true},
+	{"r_drawclipbrushes", 0.0, false, true},
+	{"r_drawdecals", 1.0, false, true},
+	{"r_drawentities", 1.0, false, true},
+	{"r_drawmodelstatsoverlay", 0, false, false},
+	{"r_drawopaqueworld", 1.0, false, true},
+	{"r_drawothermodels", 1.0, false, true},
+	{"r_drawparticles", 1.0, false, true},
+	{"r_drawrenderboxes", 0.0, false, true},
+	{"r_drawtranslucentworld", 1.0, false, true},
+	{"r_modelwireframedecal", 0, false, false},
+	{"r_portalsopenall", 0, false, false},
+	{"r_shadowwireframe", 0.0, false, true},
+	{"r_showenvcubemap", 0, false, false},
+	{"r_skybox", 1.0, false, true},
+	{"r_visocclusion", 0.0, false, true},
+	{"snd_show", 0.0, false, true},
+	{"snd_visualize", 0.0, false, true},
+	{"sv_cheats", 0.0, false, true},
+	{"vcollide_wireframe", 0.0, false, true}
 };
 
 void lilac_convar_reset_client(int client)
