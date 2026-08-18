@@ -6,5 +6,4 @@ release/
 
 *.smx
 plugins/
-.sourceknight
 .venv

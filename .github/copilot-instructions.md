@@ -11,14 +11,13 @@ This repository contains **Lilac (Little Anti-Cheat)**, a free and open-source a
 ### Core Technologies
 - **Language**: SourcePawn (Source engine scripting language)
 - **Platform**: SourceMod 1.11+ (minimum 1.12+ recommended)
-- **Compiler**: SourcePawn compiler (spcomp) via SourceKnight build system
-- **Build System**: SourceKnight (configured in `sourceknight.yaml`)
+- **Compiler**: SourcePawn compiler (spcomp), installed via `rumblefrog/setup-sp`
+- **Build System**: Native GitHub Actions workflow (`.github/workflows/ci.yml`), no external build tool
 - **CI/CD**: GitHub Actions with automated building and releases
 
 ### Development Dependencies
-- SourceMod 1.11+ development headers
-- SourceKnight build tools (handles dependency management)
-- Game-specific includes (TF2, CS:S, L4D2, etc.)
+- SourceMod 1.12 development headers (installed by the CI workflow via `rumblefrog/setup-sp`)
+- Game-specific includes (TF2, CS:S, L4D2, etc.) that ship with SourceMod
 
 ## Architecture & Structure
 
@@ -88,28 +87,25 @@ bool g_bPlayerStatus[MAXPLAYERS]; // Player arrays: g_b/g_i/g_f prefix
 #define MAX_DETECTIONS 10
 ```
 
-## Build System (SourceKnight)
+## Build System (Native GitHub Actions)
 
 ### Configuration
-The project uses SourceKnight for dependency management and compilation:
+The project builds directly with `spcomp` in `.github/workflows/ci.yml` — there is no separate build-tool config file:
 
 ```yaml
-# sourceknight.yaml structure
-project:
-  name: lilac
-  dependencies:
-    - sourcemod (auto-downloaded)
-  targets:
-    - lilac                   # Compiles lilac.sp
+# .github/workflows/ci.yml (build job, simplified)
+- uses: rumblefrog/setup-sp@v1.3.1
+  with:
+    version: "1.12.x"
+- working-directory: addons/sourcemod/scripting
+  run: spcomp -i include -o ../plugins/lilac.smx lilac.sp
 ```
 
 ### Build Commands
 ```bash
-# Local development build
-sourceknight build
-
-# Clean build
-sourceknight clean && sourceknight build
+# Local development build (requires spcomp on PATH)
+cd addons/sourcemod/scripting
+spcomp -i include -o ../plugins/lilac.smx lilac.sp
 ```
 
 ### CI/CD Pipeline
@@ -297,11 +293,8 @@ stringMap.Clear(); // Use delete instead!
 
 ### Essential Commands
 ```bash
-# Build plugin
-sourceknight build
-
-# Check for compilation errors  
-spcomp -i include/ lilac.sp
+# Build plugin (from addons/sourcemod/scripting)
+spcomp -i include -o ../plugins/lilac.smx lilac.sp
 
 # Test translations
 sm plugins load lilac
