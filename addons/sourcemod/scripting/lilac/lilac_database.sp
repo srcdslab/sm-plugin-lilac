@@ -112,14 +112,12 @@ void database_log(int client, char[] cheat, int detection=DATABASE_BAN, float da
 	float pos[3], ang[3];
 
 	char name[MAX_NAME_LENGTH];
-	char safe_name[(sizeof(name)*2)+1];
 	if (!GetClientName(client, name, sizeof(name)))
-		strcopy(name, sizeof(name), "<no name>");
+		strcopy(name, sizeof(name), "<​no name>");
 	else {
 		TrimString(name);
-		lil_db.Escape(name, safe_name, sizeof(safe_name));
-		if (strlen(safe_name) >= 128) /* prevents exploits: don't exceed 127 characters else somes names could break the query */
-			strcopy(name, sizeof(name), "<no name>");
+		if (strlen(name) >= 128) /* prevents exploits: don't exceed 127 characters else somes names could break the query */
+			strcopy(name, sizeof(name), "<​no name>");
 	}
 
 	GetClientAuthId(client, AuthId_Steam2, steamid, sizeof(steamid), true);
