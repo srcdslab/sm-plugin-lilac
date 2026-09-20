@@ -114,8 +114,11 @@ void database_log(int client, char[] cheat, int detection=DATABASE_BAN, float da
 	char name[MAX_NAME_LENGTH];
 	if (!GetClientName(client, name, sizeof(name)))
 		strcopy(name, sizeof(name), "<​no name>");
-	else
+	else {
 		TrimString(name);
+		if (strlen(name) >= 128) /* prevents exploits: don't exceed 127 characters else somes names could break the query */
+			strcopy(name, sizeof(name), "<​no name>");
+	}
 
 	GetClientAuthId(client, AuthId_Steam2, steamid, sizeof(steamid), true);
 	GetClientIP(client, ip, sizeof(ip), true);
@@ -125,17 +128,6 @@ void database_log(int client, char[] cheat, int detection=DATABASE_BAN, float da
 	GetClientWeapon(client, weapon, sizeof(weapon));
 
 	get_player_log_angles(client, 0, true, ang);
-
-	/* Player names are fully attacker-controlled and were previously only
-	 * length-checked (against a limit larger than the buffer itself, so it
-	 * never even triggered) before being formatted straight into the query
-	 * - a player could set their name to break out of the string literal
-	 * and inject arbitrary SQL. Escape every field derived from player- or
-	 * map-controlled input before formatting the query. */
-	char nameEsc[MAX_NAME_LENGTH * 2 + 1], mapEsc[128 * 2 + 1], weaponEsc[64 * 2 + 1];
-	lil_db.Escape(name, nameEsc, sizeof(nameEsc));
-	lil_db.Escape(map, mapEsc, sizeof(mapEsc));
-	lil_db.Escape(weapon, weaponEsc, sizeof(weaponEsc));
 
 	lil_db.Format(sql_buffer, sizeof(sql_buffer), "INSERT INTO lilac_detections("
 		... "name, "
@@ -191,7 +183,7 @@ void database_log(int client, char[] cheat, int detection=DATABASE_BAN, float da
 		... "'%f', "
 		... "'%f', "
 		... "'%s')",
-		nameEsc,
+		name,
 		steamid,
 		ip,
 		cheat,
@@ -203,9 +195,9 @@ void database_log(int client, char[] cheat, int detection=DATABASE_BAN, float da
 		ang[0],
 		ang[1],
 		ang[2],
-		mapEsc,
+		map,
 		GetClientTeam(client),
-		weaponEsc,
+		weapon,
 		data1,
 		data2,
 		GetClientAvgLatency(client, NetFlow_Incoming),
