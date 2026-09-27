@@ -158,11 +158,14 @@ public void query_reply(QueryCookie cookie, int client, ConVarQueryResult result
 		bool is_valid;
 
 		if (convar_rules[i].is_float) {
+			/* expected_value is tagged any: retag it as float explicitly,
+			 * otherwise spcomp 1.13 does not compare it as a float. */
+			float expected = view_as<float>(convar_rules[i].expected_value);
 			float fval = StringToFloat(cvarValue);
 			if (convar_rules[i].is_minimum)
-				is_valid = (fval >= convar_rules[i].expected_value);
+				is_valid = (fval >= expected);
 			else
-				is_valid = (fval == convar_rules[i].expected_value);
+				is_valid = (fval == expected);
 		} else {
 			int ival = StringToInt(cvarValue);
 			if (convar_rules[i].is_minimum)
