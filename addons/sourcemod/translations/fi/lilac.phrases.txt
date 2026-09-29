@@ -2,7 +2,6 @@
 {
 	"welcome_msg"
 	{
-		"#format"	"{1:s}"
 		"fi"		"Tämä palvelin on suojattu Little Anti-Cheatilla {1}"
 	}
 
@@ -13,13 +12,11 @@
 
 	"kick_interp_exploit"
 	{
-		"#format"	"{1:.0f},{2:d},{3:.3f}"
 		"fi"		"Exploit havaittu: sinun interp on liian korkea ({1}ms / {2}ms max). Aseta cl_interp takaisin {3} tai matalemmaksi"
 	}
 
 	"tban_ping_high"
 	{
-		"#format"	"{1:.0f},{2:d}"
 		"fi"		"Viiveesi on liian korkea ({1} / {2} max)"
 	}
 
@@ -75,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"fi"		"{1} Macro ei ole sallittu tällä palvelimella"
 	}
 
@@ -97,5 +93,10 @@
 	"ban_name_newline"
 	{
 		"fi"		"Nimen Newlineja havaittu"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"fi"		"{1} epäillään käyttävän '{2}' (Havainnot: {3})"
 	}
 }

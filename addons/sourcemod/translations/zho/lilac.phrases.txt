@@ -2,7 +2,6 @@
 {
 	"welcome_msg"
 	{
-		"#format"	"{1:s}"
 		"zho"		"本伺服器由 LAC 反作弊系統保護 {1}"
 	}
 
@@ -13,17 +12,15 @@
 
 	"kick_interp_exploit"
 	{
-		"#format"	"{1:.0f},{2:d},{3:.3f}"
 		"zho"		"偵測到參數異常：您的 interp 值過高 ({1}ms / 最高 {2}ms)。請將 cl_interp 參數設為 {3} 或更低。"
 	}
 
 	"tban_ping_high"
 	{
-		"#format"	"{1:.0f},{2:d}"
 		"zho"		"您的延遲過高！ ({1} / 最高 {2})"
 	}
 
-	"kick_ban_genetic"
+	"kick_ban_generic"
 	{
 		"zho"		"您已被此伺服器封鎖。"
 	}
@@ -75,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"zho"		"本伺服器不允許使用 {1} 輔助巨集"
 	}
 
@@ -101,7 +97,6 @@
 
 	"admin_chat_warning_generic"
 	{
-		"#format"	"{1:s},{2:s},{3:d}"
 		"zho"		"{1} 可能使用了「{2}」(偵測次數：{3})"
 	}
 }

@@ -2,7 +2,6 @@
 {
 	"welcome_msg"
 	{
-		"#format"	"{1:s}"
 		"da"		"Denne server er beskyttet af Little Anti-Cheat {1}"
 	}
 
@@ -13,13 +12,11 @@
 
 	"kick_interp_exploit"
 	{
-		"#format"	"{1:.0f},{2:d},{3:.3f}"
 		"da"		"Exploit opdaget: Din interp er for høj ({1}ms / {2}ms max). Venlist sæt din cl_interp tilbage til {3} eller lavere"
 	}
 
 	"tban_ping_high"
 	{
-		"#format"	"{1:.0f},{2:d}"
 		"da"		"Din ping er for høj ({1} / {2} max)"
 	}
 
@@ -75,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"da"		"{1} Macro er ikke tilladt på denne server"
 	}
 
@@ -97,5 +93,10 @@
 	"ban_name_newline"
 	{
 		"da"		"Navn Newlines Opdaget"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"da"		"{1} mistænkes for at bruge '{2}' (Detektioner: {3})"
 	}
 }
