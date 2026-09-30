@@ -58,6 +58,8 @@ jobs:
         run: |
           set -euo pipefail
           gh release delete latest --cleanup-tag --yes || true
+          # The tag may exist without a release, so delete it explicitly
+          git push origin :refs/tags/latest || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
