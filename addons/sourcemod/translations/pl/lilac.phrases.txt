@@ -40,6 +40,11 @@
 		"pl"		"Wykryto Nieprawidłowy ConVar"
 	}
 
+	"ban_nolerp"
+	{
+		"pl"		"Wykryto NoLerp"
+	}
+
 	"ban_bhop"
 	{
 		"pl"		"Wykryto Bhop"
@@ -58,5 +63,40 @@
 	"ban_noisemaker"
 	{
 		"pl"		"Wykryto Nieskończony Zagłuszacz"
+	}
+
+	"ban_macro"
+	{
+		"pl"		"Wykryto makro"
+	}
+
+	"kick_macro"
+	{
+		"pl"		"Makro {1} jest niedozwolone na tym serwerze"
+	}
+
+	"chat_invalid_characters"
+	{
+		"pl"		"Twoja wiadomość została zablokowana (Powód: Nieprawidłowe znaki)."
+	}
+
+	"chat_wide_char_spam"
+	{
+		"pl"		"Twoja wiadomość została zablokowana (Powód: Spam szerokimi znakami)."
+	}
+
+	"kick_bad_name"
+	{
+		"pl"		"Twoja nazwa zawiera nieprawidłowe znaki, zmień ją"
+	}
+
+	"ban_name_newline"
+	{
+		"pl"		"Wykryto znaki nowej linii w nazwie"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"pl"		"{1} jest podejrzany o używanie '{2}' (Wykrycia: {3})"
 	}
 }

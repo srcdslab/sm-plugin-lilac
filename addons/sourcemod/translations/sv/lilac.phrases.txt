@@ -72,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"sv"		"{1} Macro är inte tillåtet i denna server."
 	}
 
@@ -94,5 +93,10 @@
 	"ban_name_newline"
 	{
 		"sv"		"Namn-radbrytningar Upptäckt"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"sv"		"{1} misstänks för att använda '{2}' (Upptäckter: {3})"
 	}
 }

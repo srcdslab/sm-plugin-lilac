@@ -2,7 +2,6 @@
 {
 	"welcome_msg"
 	{
-		"#format"	"{1:s}"
 		"tr"		"Bu sunucu Little Anti-Cheat {1} tarafından korunmaktadır"
 	}
 
@@ -13,13 +12,11 @@
 
 	"kick_interp_exploit"
 	{
-		"#format"	"{1:.0f},{2:d},{3:.3f}"
 		"tr"		"Exploit Algılandı: Interp çok yüksek (en fazla {1}ms / {2}ms). Lütfen cl_interp değerinizi {3} veya daha düşük bir değere ayarlayın"
 	}
 
 	"tban_ping_high"
 	{
-		"#format"	"{1:.0f},{2:d}"
 		"tr"		"Pinginiz çok yüksek (en fazla {1} / {2})"
 	}
 
@@ -75,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"tr"		"{1} Bu sunucuda makroya izin verilmiyor"
 	}
 
@@ -97,5 +93,10 @@
 	"ban_name_newline"
 	{
 		"tr"		"Adınızda Yeni Satır Algılandı"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"tr"		"{1} '{2}' kullanmaktan şüpheleniliyor (Tespitler: {3})"
 	}
 }

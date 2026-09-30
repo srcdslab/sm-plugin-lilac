@@ -2,7 +2,6 @@
 {
 	"welcome_msg"
 	{
-		"#format"	"{1:s}"
 		"es"		"El servidor está protegido por Little Anti-Cheat {1}"
 	}
 
@@ -13,13 +12,11 @@
 
 	"kick_interp_exploit"
 	{
-		"#format"	"{1:.0f},{2:d},{3:.3f}"
 		"es"		"Detectado Exploit: Tu Interp es demasiado alto ({1}ms / {2}ms máx). Por favor, ajusta el comando cl_interp a {3} o por debajo"
 	}
 
 	"tban_ping_high"
 	{
-		"#format"	"{1:.0f},{2:d}"
 		"es"		"Tu Ping es demasiado alto ({1} / {2} máx)"
 	}
 
@@ -75,7 +72,6 @@
 
 	"kick_macro"
 	{
-		"#format"	"{1:s}"
 		"es"		"{1} las macros no están permitidas en este servidor"
 	}
 
@@ -97,5 +93,10 @@
 	"ban_name_newline"
 	{
 		"es"		"Detectado Newlines en el nombre"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"es"		"{1} es sospechoso de usar '{2}' (Detecciones: {3})"
 	}
 }
