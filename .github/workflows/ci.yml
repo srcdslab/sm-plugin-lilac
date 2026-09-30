@@ -3,6 +3,16 @@ name: CI
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
+  translations:
+    name: Translations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: srcdslab/smtranslate@v1
+        with:
+          # Set the TRANSLATIONS_FAIL_ON repository variable to "warning" to make warnings blocking
+          fail-on: ${{ vars.TRANSLATIONS_FAIL_ON || 'error' }}
+
   build:
     name: Build
     runs-on: ubuntu-latest
