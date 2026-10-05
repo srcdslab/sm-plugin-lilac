@@ -121,7 +121,6 @@ Just understandable to those who don't speak English too well.
 ### Optional:
  - Sourcebans++
  - MaterialAdmin
- - Updater
 
 <details>
 <summary>See old Closing notes from J_Tanzanite (before SRCDSLAB fork)</summary>

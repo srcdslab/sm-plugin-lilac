@@ -1,3 +1,6 @@
+1.7.16
+- Remove Updater support (lilac_auto_update ConVar and updatefile.txt): the update file was outdated and its paths no longer matched the repository layout
+
 1.7.10
 - lilac_set_ban_length command now return a confirmation message
 - lilac_get_bans_length - Shows current ban lengths for all cheat types.
