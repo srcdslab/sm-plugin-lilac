@@ -161,7 +161,7 @@ void lilac_log_extra(int client)
 
 void lilac_log(bool cleanup)
 {
-	Handle file = OpenFile(log_file, "a");
+	File file = OpenFile(log_file, "a");
 
 	if (file == null) {
 		PrintToServer("[Lilac] Cannot open log file.");
@@ -180,7 +180,7 @@ void lilac_log(bool cleanup)
 		}
 	}
 
-	WriteFileLine(file, "%s", line_buffer);
+	file.WriteLine("%s", line_buffer);
 	/* Just echo log lines to SourceIRC */
 	if (icvar[CVAR_SOURCEIRC] && NATIVE_EXISTS("IRC_MsgFlaggedChannels")) {
 		/* Note- SourceIRC Expects messages to be clean with no \r or \n, so clean it if not already done. */
@@ -194,7 +194,7 @@ void lilac_log(bool cleanup)
 		}
 		IRC_MsgFlaggedChannels("lilac", "[LILAC] %s", line_buffer);
 	}
-	CloseHandle(file);
+	delete file;
 }
 
 void lilac_log_first_time_setup()

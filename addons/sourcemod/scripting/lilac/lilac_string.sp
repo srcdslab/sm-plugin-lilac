@@ -118,12 +118,12 @@ public Action event_namechange(Event event, const char[] name, bool dontBroadcas
 	int client;
 	char client_name[MAX_NAME_LENGTH];
 
-	client = GetClientOfUserId(GetEventInt(event, "userid", 0));
+	client = GetClientOfUserId(event.GetInt("userid", 0));
 
 	if (skip_name_check(client))
 		return Plugin_Continue;
 
-	GetEventString(event, "newname", client_name, sizeof(client_name), "");
+	event.GetString("newname", client_name, sizeof(client_name), "");
 	check_name(client, client_name);
 
 	return Plugin_Continue;

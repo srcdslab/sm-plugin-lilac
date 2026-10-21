@@ -42,8 +42,8 @@ public Action event_player_death(Event event, const char[] name, bool dontBroadc
 	if (!icvar[CVAR_ENABLE])
 		return Plugin_Continue;
 	
-	attackerid = GetEventInt(event, "attacker", -1);
-	victimid = GetEventInt(event, "userid", -1);
+	attackerid = event.GetInt("attacker", -1);
+	victimid = event.GetInt("userid", -1);
 	client = GetClientOfUserId(victimid);
 	
 	if (!is_player_valid(client))
@@ -56,7 +56,7 @@ public Action event_player_death(Event event, const char[] name, bool dontBroadc
 		return Plugin_Continue;
 
 	/* Ignore kills performed with grenades. */
-	GetEventString(event, "weapon", wep, sizeof(wep));
+	event.GetString("weapon", wep, sizeof(wep));
 	if (strcmp(wep, "hegrenade") == 0)
 		return Plugin_Continue;
 	
@@ -76,7 +76,7 @@ public Action event_player_death_tf2(Event event, const char[] name, bool dontBr
 		return Plugin_Continue;
 
 
-	victim = GetClientOfUserId(GetEventInt(event, "userid", -1));
+	victim = GetClientOfUserId(event.GetInt("userid", -1));
 
 	if (!is_player_valid(victim))
 		return Plugin_Continue;
@@ -85,15 +85,15 @@ public Action event_player_death_tf2(Event event, const char[] name, bool dontBr
 	if (aimbot_timertick[victim] == GetGameTickCount())
 		return Plugin_Continue;
 
-	GetEventString(event, "weapon_logclassname", wep, sizeof(wep), "");
+	event.GetString("weapon_logclassname", wep, sizeof(wep), "");
 
 	/* Ignore sentries & world in TF2. */
 	if (!strncmp(wep, "obj_", 4, false) || !strncmp(wep, "world", 5, false))
 		return Plugin_Continue;
 
-	userid = GetEventInt(event, "attacker", -1);
+	userid = event.GetInt("attacker", -1);
 	client = GetClientOfUserId(userid);
-	killtype = GetEventInt(event, "customkill", 0);
+	killtype = event.GetInt("customkill", 0);
 
 	/* killtype 3 == flamethrower,
 	 * ignore snap detections as pyros sometimes,

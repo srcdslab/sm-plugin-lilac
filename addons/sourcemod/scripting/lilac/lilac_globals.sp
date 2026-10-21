@@ -117,7 +117,7 @@
 #define PLUGIN_NAME      "[Lilac] Little Anti-Cheat"
 #define PLUGIN_AUTHOR    "J_Tanzanite"
 #define PLUGIN_DESC      "An opensource Anti-Cheat"
-#define PLUGIN_VERSION   "1.7.16"
+#define PLUGIN_VERSION   "1.7.17"
 #define PLUGIN_URL       "https://github.com/J-Tanzanite/Little-Anti-Cheat"
 
 /* Convars. */
@@ -146,9 +146,9 @@ char line_buffer[2048];
 char dateformat[512] = "%Y/%m/%d %H:%M:%S";
 char log_file[PLATFORM_MAX_PATH];
 float max_angles[3] = {89.01, 0.0, 50.01};
-Handle forwardhandle = INVALID_HANDLE;
-Handle forwardhandleban = INVALID_HANDLE;
-Handle forwardhandleallow = INVALID_HANDLE;
+GlobalForward forwardhandle = null;
+GlobalForward forwardhandleban = null;
+GlobalForward forwardhandleallow = null;
 
 /* External plugins. */
 bool sourcebans_exist = false;
