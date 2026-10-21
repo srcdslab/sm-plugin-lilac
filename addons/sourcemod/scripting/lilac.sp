@@ -139,12 +139,9 @@ public void OnPluginStart()
 #endif
 	}
 
-	forwardhandle = CreateGlobalForward("lilac_cheater_detected",
-		ET_Ignore, Param_Cell, Param_Cell);
-	forwardhandleban = CreateGlobalForward("lilac_cheater_banned",
-		ET_Ignore, Param_Cell, Param_Cell);
-	forwardhandleallow = CreateGlobalForward("lilac_allow_cheat_detection",
-		ET_Event, Param_Cell, Param_Cell);
+	forwardhandle = new GlobalForward("lilac_cheater_detected", ET_Ignore, Param_Cell, Param_Cell);
+	forwardhandleban = new GlobalForward("lilac_cheater_banned", ET_Ignore, Param_Cell, Param_Cell);
+	forwardhandleallow = new GlobalForward("lilac_allow_cheat_detection", ET_Event, Param_Cell, Param_Cell);
 
 	CreateTimer(QUERY_TIMER, timer_query, _, TIMER_REPEAT);
 	CreateTimer(5.0, timer_check_ping, _, TIMER_REPEAT);
@@ -242,7 +239,7 @@ public void TF2_OnConditionRemoved(int client, TFCond condition)
 
 public Action event_teleported(Event event, const char[] name, bool dontBroadcast)
 {
-	int client = GetClientOfUserId(GetEventInt(event, "userid", -1));
+	int client = GetClientOfUserId(event.GetInt("userid", -1));
 
 	if (is_player_valid(client))
 		playerinfo_time_teleported[client] = GetGameTime();

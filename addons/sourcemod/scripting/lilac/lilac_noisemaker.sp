@@ -38,7 +38,7 @@ public Action event_inventoryupdate(Event event, const char[] name, bool dontBro
 {
 	int client;
 
-	client = GetClientOfUserId(GetEventInt(event, "userid", 0));
+	client = GetClientOfUserId(event.GetInt("userid", 0));
 	check_inventory_for_noisemaker(client);
 
 	return Plugin_Continue;
@@ -104,7 +104,7 @@ static int get_entity_noisemaker_type(int itemindex)
 public Action OnClientCommandKeyValues(int client, KeyValues kv)
 {
 	char command[64];
-	KvGetSectionName(kv, command, sizeof(command));
+	kv.GetSectionName(command, sizeof(command));
 
 	if (ggame != GAME_TF2)
 		return Plugin_Continue;
