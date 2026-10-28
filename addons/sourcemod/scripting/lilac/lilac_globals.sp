@@ -117,7 +117,7 @@
 #define PLUGIN_NAME      "[Lilac] Little Anti-Cheat"
 #define PLUGIN_AUTHOR    "J_Tanzanite"
 #define PLUGIN_DESC      "An opensource Anti-Cheat"
-#define PLUGIN_VERSION   "1.7.17"
+#define PLUGIN_VERSION   "1.7.18"
 #define PLUGIN_URL       "https://github.com/J-Tanzanite/Little-Anti-Cheat"
 
 /* Convars. */
@@ -134,6 +134,8 @@ int ban_length_overwrite[CHEAT_MAX];
 Database lil_db;
 char sql_buffer[1500]; /* It's probably bigger than what you need, but better be safe than sorry I guess. */
 char db_name[64]; /* Database config name from hcvar[CVAR_DATABASE]. */
+bool db_connecting; /* A Database.Connect() is in flight. */
+int db_connect_serial; /* Bumped when db_name changes, to drop a connection made with the old name. */
 
 /* Misc. */
 int ggame;

@@ -720,6 +720,7 @@ public void cvar_change(ConVar convar, const char[] oldValue, const char[] newVa
 	}
 	else if (convar == hcvar[CVAR_DATABASE]) {
 		strcopy(db_name, sizeof(db_name), newValue);
+		Database_OnNameChanged();
 	}
 	else {
 		convar.GetName(cvarname, sizeof(cvarname));
