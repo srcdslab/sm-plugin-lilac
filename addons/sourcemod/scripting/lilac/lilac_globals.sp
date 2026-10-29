@@ -120,7 +120,7 @@
 #define PLUGIN_NAME      "[Lilac] Little Anti-Cheat"
 #define PLUGIN_AUTHOR    "J_Tanzanite"
 #define PLUGIN_DESC      "An opensource Anti-Cheat"
-#define PLUGIN_VERSION   "1.7.18"
+#define PLUGIN_VERSION   "1.7.19"
 #define PLUGIN_URL       "https://github.com/J-Tanzanite/Little-Anti-Cheat"
 
 /* Convars. */
