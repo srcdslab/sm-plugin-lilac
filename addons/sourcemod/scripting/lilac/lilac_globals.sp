@@ -106,6 +106,9 @@
 #define AIMBOT_FLAG_AUTOSHOOT    (1 << 1)
 #define AIMBOT_FLAG_SNAP         (1 << 2)
 #define AIMBOT_FLAG_SNAP2        (1 << 3)
+#define AIMBOT_FLAG_STEP         (1 << 4)
+#define AIMBOT_STEP_SIZE         4.0
+#define AIMBOT_STEP_TOLERANCE    0.001
 
 #define STRFLAG_NEWLINE          (1 << 0) /* Carriage return or Newline. */
 #define STRFLAG_WIDE_CHAR_SPAM   (1 << 1) /* Lots of wide character spam. */
@@ -117,7 +120,7 @@
 #define PLUGIN_NAME      "[Lilac] Little Anti-Cheat"
 #define PLUGIN_AUTHOR    "J_Tanzanite"
 #define PLUGIN_DESC      "An opensource Anti-Cheat"
-#define PLUGIN_VERSION   "1.7.17"
+#define PLUGIN_VERSION   "1.7.18"
 #define PLUGIN_URL       "https://github.com/J-Tanzanite/Little-Anti-Cheat"
 
 /* Convars. */
