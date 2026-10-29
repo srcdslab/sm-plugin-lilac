@@ -39,15 +39,44 @@ void Database_OnConfigExecuted()
 		LogError("Database config '%s' doesn't exist in databases.cfg", db_name);
 		return;
 	}
-	Database.Connect(OnDatabaseConnected, db_name);
+
+	/* The pending connection will set lil_db. */
+	if (db_connecting)
+		return;
+
+	db_connecting = true;
+	Database.Connect(OnDatabaseConnected, db_name, db_connect_serial);
+}
+
+/* lilac_database changed: drop the current connection and connect to the new config. */
+void Database_OnNameChanged()
+{
+	db_connect_serial++;
+
+	/* Nothing open yet: OnConfigsExecuted (or the pending connection) takes care of it. */
+	if (!lil_db)
+		return;
+
+	delete lil_db;
+	Database_OnConfigExecuted();
 }
 
 public void OnDatabaseConnected(Database db, const char[] error, any data)
 {
+	db_connecting = false;
+
 	if (!db) {
 		LogError("Couldn't connect to the database. Please verify your config.");
 		return;
 	}
+
+	/* lilac_database changed while connecting, this is the old config. */
+	if (data != db_connect_serial || lil_db) {
+		delete db;
+		Database_OnConfigExecuted();
+		return;
+	}
+
 	lil_db = db;
 
 	InitDatabase();
@@ -55,6 +84,11 @@ public void OnDatabaseConnected(Database db, const char[] error, any data)
 
 void InitDatabase()
 {
+	/* Sets the right charset to store player names, in case you don't know how to configure your DB (lol).
+	 * This only sets the connection charset. Done before any query, once per connection:
+	 * it is kept by the driver's auto-reconnect. */
+	lil_db.SetCharset("utf8mb4");
+
 	/* SQLite syntax, but seems valid for MySQL too */
 	lil_db.Query(OnDatabaseInit, "CREATE TABLE IF NOT EXISTS lilac_detections("
 		... "name varchar(128) NOT NULL, " /* Honestly, you can deal with less bytes. 32 is fine too, but since you shouldn't have a ton of detections, that should be okay. */
@@ -83,10 +117,6 @@ void InitDatabase()
 		... "connection_ticktime FLOAT NOT NULL, "
 		... "game_ticktime FLOAT NOT NULL, "
 		... "lilac_version varchar(20) NOT NULL)");
-	
-	/* Sets the right charset to store player names, in case you don't know how to configure your DB (lol).
-	 * This only sets the connection charset. */
-	lil_db.SetCharset("utf8mb4");
 }
 
 public void OnDatabaseInit(Database db, DBResultSet results, const char[] error, any data)
