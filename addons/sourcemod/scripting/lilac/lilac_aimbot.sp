@@ -162,6 +162,7 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 	bool skip_snap = false;
 	bool skip_autoshoot = false;
 	bool skip_repeat = false;
+	bool skip_step = false;
 
 	pack.Reset();
 	client = GetClientOfUserId(pack.ReadCell());
@@ -201,6 +202,9 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 	if (shotindex == -1) {
 		shotindex = fallback;
 
+		/* The Aim-Step test needs the exact tick of the shot. */
+		skip_step = true;
+
 		/* If the latest index is the same as the fallback, then no
 		 * more usercmds have been processed since the death event.
 		 * These detections are thus unstable and will be ignored
@@ -221,9 +225,11 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 
 	/* Player taunted within 0.5 seconds
 	 * of taking a shot leading to a kill.
-	 * Ignore snap detections. */
-	if (-0.1 < playerinfo_time_usercmd[client][shotindex] - playerinfo_time_teleported[client] < 0.5 + 0.1)
+	 * Ignore snap and Aim-Step detections. */
+	if (-0.1 < playerinfo_time_usercmd[client][shotindex] - playerinfo_time_teleported[client] < 0.5 + 0.1) {
 		skip_snap = true;
+		skip_step = true;
+	}
 
 	/* Aimsnap and total delta test. */
 	if (skip_snap == false) {
@@ -269,6 +275,7 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 	if (skip_due_to_loss(client)) {
 		skip_autoshoot = true;
 		skip_repeat = true;
+		skip_step = true;
 		detected = 0;
 	}
 
@@ -282,6 +289,29 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 		if (tdelta < 10.0 && angle_delta(ang, lang) > 0.5
 			&& angle_delta(ang, lang) > tdelta * 5.0)
 			detected |= AIMBOT_FLAG_REPEAT;
+	}
+
+	/* Aim-Step test.
+	 * Some cheats cap their aim moves at a fixed angle per tick,
+	 * so no delta is big enough to be a snap (cssourcex64 "LILAc" mode).
+	 * Each shot is then: one tick aimed at the target without attack,
+	 * the shot with the exact same angles, then one tick that turns
+	 * by exactly AIMBOT_STEP_SIZE degrees with attack still held. */
+	if (skip_step == false) {
+		int prev_ind = (shotindex == 0) ? CMD_LENGTH - 1 : shotindex - 1;
+		int next_ind = (shotindex == CMD_LENGTH - 1) ? 0 : shotindex + 1;
+
+		get_player_log_angles(client, prev_ind, false, ang);
+		get_player_log_angles(client, shotindex, false, lang);
+
+		if (!(playerinfo_buttons[client][prev_ind] & IN_ATTACK)
+			&& (playerinfo_buttons[client][next_ind] & IN_ATTACK)
+			&& angle_delta(ang, lang) < AIMBOT_STEP_TOLERANCE) {
+			get_player_log_angles(client, next_ind, false, ang);
+
+			if (is_aim_step(lang, ang))
+				detected |= AIMBOT_FLAG_STEP;
+		}
 	}
 
 	/* Autoshoot test. */
@@ -318,6 +348,24 @@ public Action timer_check_aimbot(Handle timer, DataPack pack)
 	return Plugin_Continue;
 }
 
+/* Turned by exactly AIMBOT_STEP_SIZE degrees, towards positive yaw. */
+static bool is_aim_step(float a1[3], float a2[3])
+{
+	float pitch = a2[0] - a1[0];
+	float yaw = a2[1] - a1[1];
+
+	/* Normalize once only, these angles come from the client. */
+	if (yaw > 180.0)
+		yaw -= 360.0;
+	else if (yaw < -180.0)
+		yaw += 360.0;
+
+	if (yaw <= 0.0)
+		return false;
+
+	return FloatAbs(SquareRoot(pitch * pitch + yaw * yaw) - AIMBOT_STEP_SIZE) < AIMBOT_STEP_TOLERANCE;
+}
+
 static void lilac_detected_aimbot(int client, float delta, float td, int flags)
 {
 	if (playerinfo_banned_flags[client][CHEAT_AIMBOT])
@@ -331,12 +379,13 @@ static void lilac_detected_aimbot(int client, float delta, float td, int flags)
 
 	char sDetails[512];
 	Format(sDetails, sizeof(sDetails),
-			"Detection: %d | Delta: %.0f | TotalDelta: %.0f | Detected:%s%s%s%s%s",
+			"Detection: %d | Delta: %.0f | TotalDelta: %.0f | Detected:%s%s%s%s%s%s",
 			aimbot_detection[client], delta, td,
 			((flags & AIMBOT_FLAG_SNAP)      ? " Aim-Snap"     : ""),
 			((flags & AIMBOT_FLAG_SNAP2)     ? " Aim-Snap2"    : ""),
 			((flags & AIMBOT_FLAG_AUTOSHOOT) ? " Autoshoot"    : ""),
 			((flags & AIMBOT_FLAG_REPEAT)    ? " Angle-Repeat" : ""),
+			((flags & AIMBOT_FLAG_STEP)      ? " Aim-Step"     : ""),
 			((td > AIMBOT_MAX_TOTAL_DELTA)   ? " Total-Delta"  : ""));
 
 	lilac_save_player_details(client, sDetails);
