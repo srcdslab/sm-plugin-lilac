@@ -14,15 +14,25 @@ jobs:
           fail-on: ${{ vars.TRANSLATIONS_FAIL_ON || 'error' }}
 
   build:
-    name: Build
+    name: Build (SM ${{ matrix.sm-label }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - sm-version: "1.12.x"
+            sm-label: "1.12"
+          # Pinned to 1.13.0.7427, the build our servers run (2026-11-11),
+          # not the latest 1.13 snapshot. setup-sp names it "1.13.7427".
+          - sm-version: "1.13.7427"
+            sm-label: "1.13"
     steps:
       - uses: actions/checkout@v7
 
       - name: Setup SourcePawn compiler
         uses: rumblefrog/setup-sp@v1.3.1
         with:
-          version: "1.12.x"
+          version: ${{ matrix.sm-version }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build sourcemod plugin
@@ -43,7 +53,7 @@ jobs:
       - name: Upload build archive for test runners
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ runner.os }}
+          name: package-sm${{ matrix.sm-label }}
           path: /tmp/package
 
   tag:
@@ -81,7 +91,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:
-          name: ${{ runner.os }}
+          pattern: package-sm*
           path: artifacts
 
       - name: Versioning
@@ -93,12 +103,17 @@ jobs:
           fi
           echo "RELEASE_VERSION=$version" >> "$GITHUB_ENV"
 
+      # One archive per SourceMod version:
+      # <repo>-<version>-sm1.12.tar.gz and <repo>-<version>-sm1.13.tar.gz
       - name: Package
         run: |
           set -euo pipefail
-          cd artifacts
-          tar -czf "../${{ github.event.repository.name }}-${{ env.RELEASE_VERSION }}.tar.gz" .
-          cd ..
+          for dir in artifacts/package-sm*/; do
+            label="$(basename "$dir")"
+            label="${label#package-}"
+            tar -czf "${{ github.event.repository.name }}-${{ env.RELEASE_VERSION }}-${label}.tar.gz" -C "$dir" .
+          done
+          ls -l *.tar.gz
 
       - name: Release
         uses: svenstaro/upload-release-action@v2
