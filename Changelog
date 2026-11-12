@@ -1,3 +1,6 @@
+1.7.19
+- Aimbot: new "Aim-Step" detection for aimbots that move at a fixed 4 degrees per tick to stay under the snap checks (cssourcex64 "LILAc" mode, #12)
+
 1.7.16
 - Remove Updater support (lilac_auto_update ConVar and updatefile.txt): the update file was outdated and its paths no longer matched the repository layout
 
