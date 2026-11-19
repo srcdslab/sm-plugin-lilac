@@ -1,3 +1,6 @@
+1.7.20
+- Add Italian (it) translations
+
 1.7.16
 - Remove Updater support (lilac_auto_update ConVar and updatefile.txt): the update file was outdated and its paths no longer matched the repository layout
 
