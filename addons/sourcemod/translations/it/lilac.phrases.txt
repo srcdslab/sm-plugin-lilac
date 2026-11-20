@@ -1,0 +1,102 @@
+"Phrases"
+{
+	"welcome_msg"
+	{
+		"it"		"Questo server è protetto da Little Anti-Cheat {1}"
+	}
+
+	"kick_query_failure"
+	{
+		"it"		"Errore: risposta alla richiesta non riuscita, riavvia il gioco se il problema persiste"
+	}
+
+	"kick_interp_exploit"
+	{
+		"it"		"Exploit rilevato: il tuo interp è troppo alto ({1}ms / {2}ms max). Reimposta cl_interp a {3} o meno"
+	}
+
+	"tban_ping_high"
+	{
+		"it"		"Il tuo ping è troppo alto ({1} / {2} max)"
+	}
+
+	"kick_ban_generic"
+	{
+		"it"		"Sei stato bannato da questo server"
+	}
+
+	"ban_angle"
+	{
+		"it"		"Angle-Cheats rilevato"
+	}
+
+	"ban_chat_clear"
+	{
+		"it"		"Chat-Clear rilevato"
+	}
+
+	"ban_convar"
+	{
+		"it"		"ConVar non valida rilevata"
+	}
+
+	"ban_nolerp"
+	{
+		"it"		"NoLerp rilevato"
+	}
+
+	"ban_bhop"
+	{
+		"it"		"Bhop rilevato"
+	}
+
+	"ban_aimbot"
+	{
+		"it"		"Aimbot rilevato"
+	}
+
+	"ban_aimlock"
+	{
+		"it"		"Aimlock rilevato"
+	}
+
+	"ban_noisemaker"
+	{
+		"it"		"Noise Maker infinito rilevato"
+	}
+
+	"ban_macro"
+	{
+		"it"		"Macro rilevata"
+	}
+
+	"kick_macro"
+	{
+		"it"		"Le macro {1} non sono consentite su questo server"
+	}
+
+	"chat_invalid_characters"
+	{
+		"it"		"Il tuo messaggio in chat è stato bloccato (Motivo: caratteri non validi)."
+	}
+
+	"chat_wide_char_spam"
+	{
+		"it"		"Il tuo messaggio in chat è stato bloccato (Motivo: spam di caratteri wide)."
+	}
+
+	"kick_bad_name"
+	{
+		"it"		"Il tuo nome contiene caratteri non validi, cambialo"
+	}
+
+	"ban_name_newline"
+	{
+		"it"		"A capo nel nome rilevati"
+	}
+
+	"admin_chat_warning_generic"
+	{
+		"it"		"{1} è sospettato di usare '{2}' (rilevamenti: {3})"
+	}
+}
